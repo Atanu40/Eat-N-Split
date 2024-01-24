@@ -1,0 +1,9 @@
+.bill-form{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: var(--color-lightest);
+  border-radius: 7px;
+  margin-bottom: 1.6rem;
+  padding: 35px 25px;
+}
