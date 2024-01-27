@@ -30,17 +30,55 @@ function App() {
     },
   ];
 
+  const [friends, setFriends] = useState(initialFriends);
+  const [showAddFrom, setShowAddFrom] = useState(false);
+  const [showBillFrom, setShowBillFrom] = useState(false);
+
+  console.log(showBillFrom);
+
+  const addFriend = (newFriend) => {
+    setFriends([...friends, newFriend]);
+  }
+
+  const billClick = (newArray) => {
+
+    const trueIndices = newArray.reduce((acc, status, index) => {
+      if (status) {
+        acc.push(index);
+      }
+      return acc;
+    }, []);
+ 
+    setShowBillFrom(!showBillFrom);
+    console.log(showBillFrom);
+  };
+  
+
+  const onAdd = () => {
+    setShowAddFrom(!showAddFrom);
+  }
+
   return (
     <>
      <div className='page-width'>
         <div className='top-btm-padding'>
           <div className='large-device'>
             <div className='left-side'>
-              <List listArray={initialFriends}/>
-              <AddFriend listArray={initialFriends}/>
+              <List listArray={friends} onBillClick={billClick}/>
+              {showAddFrom && <AddFriend listArray={initialFriends} onAddFriend={addFriend}/>}
+              
+              <div className='add-btn-content'>
+                <div></div>
+                <button className='button btn-add' onClick={onAdd}>
+                  {showAddFrom ? "Cancel" : "Add Friend"}
+                </button>
+              </div>
+             
             </div>
             <div className='right-side'>
-              <BillFrom />
+              <div className='right-side-content'>
+                {showBillFrom &&  <BillFrom listArray={friends}/>}
+              </div>
             </div>
           </div>
         </div>

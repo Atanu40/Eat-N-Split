@@ -1,15 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './ListComponent.css'
 
 function ListComponent(props) {
 
-  const { listArray } = props;
+  const { listArray,onBillClick } = props;
+  const [NewArray, setNewArray] = useState(Array(listArray.length).fill(false));
+
+  const onSelect = (id) => {
+    const newStatuses = NewArray.map((status, i) => {
+      if (i === id) {
+        return !status;
+      }
+      return false;
+    });
+    setNewArray(newStatuses);
+    onBillClick(newStatuses)
+  }
 
   return (
     <div>
       <ul>
         {
-          listArray.map((item) => {
+          listArray.map((item,index) => {
             return (
               <li key={item.id}>
                 <div className="list-item">
@@ -31,7 +43,9 @@ function ListComponent(props) {
                     </div>
                   </div>
                   <div>
-                    <button className="button">Select</button>
+                    <button className="button" onClick={()=>onSelect(index)}>
+                      {NewArray[index] ? "Close" : "Select"}
+                    </button>
                   </div>
                 </div>
               </li>

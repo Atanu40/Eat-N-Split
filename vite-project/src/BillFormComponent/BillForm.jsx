@@ -1,7 +1,10 @@
 import React from 'react'
 import './BillFormComponent.css'
 
-function BillForm() {
+function BillForm(props) {
+
+  const { listArray } = props;
+
   return (
     <div>
       <form className='bill-form'>

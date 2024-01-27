@@ -18,6 +18,16 @@
   gap: 18px;
 }
 
-.right-side{
-  position: sticky;
+.right-side-content{
+  position:-webkit-sticky; position:sticky; top:0;
+}
+
+.add-btn-content{
+  display: grid;
+  grid-template-columns: 1fr 0.3fr;
+  justify-content: center;
+}
+
+.btn-add{
+  padding: 10px 10px !important;
 }
