@@ -31,3 +31,19 @@
 .btn-add{
   padding: 10px 10px !important;
 }
+
+@media screen and (max-width: 990px) {
+  .large-device{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 25px;
+    align-items: center;
+  }
+}
+@media screen and (max-width: 480px) {
+  .add-btn-content{
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    justify-content: center;
+  }
+}

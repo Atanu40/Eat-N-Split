@@ -7,3 +7,11 @@
   margin-bottom: 1.6rem;
   padding: 35px 25px;
 }
+
+/* Media Queries */
+
+@media screen and (max-width: 480px){
+  .bill-form{
+    padding: 35px 14px;
+  }
+}

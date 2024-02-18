@@ -32,30 +32,41 @@ function App() {
 
   const [friends, setFriends] = useState(initialFriends);
   const [showAddFrom, setShowAddFrom] = useState(false);
-  const [showBillFrom, setShowBillFrom] = useState(false);
-
-  console.log(showBillFrom);
+  const [selectIndex, setSelectIndex] = useState(null);
+  const [selectedFriendIndex, setSelectedFriendIndex] = useState(null);
 
   const addFriend = (newFriend) => {
     setFriends([...friends, newFriend]);
   }
 
-  const billClick = (newArray) => {
+  const billClick = (newArray,selectIndex) => {
+    console.log(newArray);
+    setSelectIndex(selectIndex);
+    console.log(selectIndex);
 
-    const trueIndices = newArray.reduce((acc, status, index) => {
-      if (status) {
-        acc.push(index);
-      }
-      return acc;
-    }, []);
- 
-    setShowBillFrom(!showBillFrom);
-    console.log(showBillFrom);
+    setSelectedFriendIndex((prevIndex) => {
+      // If clicking on the same index, toggle the state
+      console.log(prevIndex);
+      return prevIndex === selectIndex ? null : selectIndex;
+    });
   };
-  
-
+ 
   const onAdd = () => {
     setShowAddFrom(!showAddFrom);
+  }
+
+  const onBillRcd = (bill,selectId) => {
+    setFriends((friends)=>{
+      return friends.map((friend,index) => {
+        if(friend.id === selectId){
+          return {
+            ...friend,
+            balance: friend.balance + bill
+          }
+        }
+        return friend;
+      })
+    });
   }
 
   return (
@@ -64,7 +75,7 @@ function App() {
         <div className='top-btm-padding'>
           <div className='large-device'>
             <div className='left-side'>
-              <List listArray={friends} onBillClick={billClick}/>
+              <List listArray={friends} onBillClick={billClick} />
               {showAddFrom && <AddFriend listArray={initialFriends} onAddFriend={addFriend}/>}
               
               <div className='add-btn-content'>
@@ -77,7 +88,7 @@ function App() {
             </div>
             <div className='right-side'>
               <div className='right-side-content'>
-                {showBillFrom &&  <BillFrom listArray={friends}/>}
+                {selectedFriendIndex !== null && <BillFrom listArray={friends} selectIndex={selectIndex} onBill={onBillRcd}/>} 
               </div>
             </div>
           </div>

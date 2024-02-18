@@ -51,8 +51,7 @@ function AddFriend(props) {
           <div></div>
           <button className="button form-btn">Add</button>
         </div>
-      </form>
-      
+      </form>      
     </div>
   )
 }

@@ -47,3 +47,15 @@ ul{
   font-weight: 400;
   font-size: 16px;
 }
+
+.negative-balance{
+  color: red;
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 480px){
+  .person-name{
+    font-size: 18px;
+  }  
+}

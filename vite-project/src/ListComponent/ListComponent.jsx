@@ -2,11 +2,10 @@ import React, { useState } from 'react'
 import './ListComponent.css'
 
 function ListComponent(props) {
-
   const { listArray,onBillClick } = props;
   const [NewArray, setNewArray] = useState(Array(listArray.length).fill(false));
 
-  const onSelect = (id) => {
+  const onSelect = (id,indexId) => {
     const newStatuses = NewArray.map((status, i) => {
       if (i === id) {
         return !status;
@@ -14,7 +13,7 @@ function ListComponent(props) {
       return false;
     });
     setNewArray(newStatuses);
-    onBillClick(newStatuses)
+    onBillClick(newStatuses,indexId)
   }
 
   return (
@@ -31,6 +30,7 @@ function ListComponent(props) {
                   <div className="list-item-name">
                     <div className='person-name'>{item.name}</div>
                     <div className="list-item-balance">
+                     
                       {
                         item.balance > 0
                           ? <span className='positive-balance'>{item.name} owe you {" "}  {Math.abs(item.balance)}€</span>
@@ -43,7 +43,7 @@ function ListComponent(props) {
                     </div>
                   </div>
                   <div>
-                    <button className="button" onClick={()=>onSelect(index)}>
+                    <button className="button" onClick={()=>onSelect(index,item.id)}>
                       {NewArray[index] ? "Close" : "Select"}
                     </button>
                   </div>

@@ -41,3 +41,29 @@ select:focus {
 .form-btn{
   padding: 10px 10px !important;
 }
+
+@media screen and (max-width: 480px) {
+  .form-per-content{
+    display: grid;
+    grid-template-columns: 1.5fr 1.3fr;
+    gap: 8px;
+    justify-content: space-around;
+  }
+
+  label {
+    font-weight: 500;
+    font-size: 15px;
+    font-family: var(--roboto-font-family);
+  }
+
+  input,
+  select {
+  font-family: var(--roboto-font-family);
+  font-size: 15px;
+  padding: 0.2rem;
+  text-align: center;
+  border: 1px solid var(--color-light);
+  border-radius: 4px;
+  transition: 0.3s;
+ }
+}
